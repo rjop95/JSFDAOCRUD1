@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Crud DAO JSF</title>
+</h:head>
+
+<h:body>
+	<center>
+	<h2>
+		<h:inputText value="Registro de productos" />
+	</h2>
+	</center>
+	<h:form id="frmProductos">
+		<h:dataTable id="tblProductos" binding="#{table}"
+			value="#{productoBean.ListaProductos()}" var="producto"
+			styleClass="table table-striped table-hover table-bordered tableUpdated">
+
+			<h:column>
+				<f:facet name="header">Id Producto</f:facet>
+				<h:outputText value="#{producto.idProductoBean}"></h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre Producto</f:facet>
+				<h:outputText value="#{producto.nombreProductoBean}"></h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Precio Producto</f:facet>
+				<h:outputText value="#{producto.precioProductoBean}"></h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Actualizar</f:facet>
+				<h:commandButton
+					action="#{productoBean.editarRegistroProducto(producto.idProductoBean)}"
+					value="Actualizar" styleClass="btn btn-primary" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Borrar</f:facet>
+				<h:commandButton
+					action="#{productoBean.borrarRegistroProducto(producto.idProductoBean)}"
+					value="Borrar" styleClass="btn btn-danger" />
+			</h:column>
+
+		</h:dataTable>
+
+		<center>
+			<h:commandButton action="agregarProducto?faces-redirect=true"
+				value="Agregar Nuevo Producto" styleClass="btn btn-succes btnSpace"></h:commandButton>
+		</center>
+
+	</h:form>
+
+
+
+	<h:outputScript library="js" name="jquery-min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="script.js" />
+</h:body>
+
+
+
+</html>
